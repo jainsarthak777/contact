@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact — Sarthak Jain</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #111110;
+      --ink-2: #3a3935;
+      --ink-3: #6b6a64;
+      --rule: #d4d2c9;
+      --accent: #c0392b;
+      --accent-hover: #a93226;
+      --accent-light: #f9edeb;
+      --bg: #faf9f6;
+      --paper: #ffffff;
+      --field-bg: #f5f4f0;
+      --field-border: #d4d2c9;
+      --field-focus: #c0392b;
+    }
+
+    body {
+      background: var(--bg);
+      font-family: 'DM Sans', sans-serif;
+      color: var(--ink);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 48px 20px 80px;
+    }
+
+    .wrapper {
+      width: 100%;
+      max-width: 860px;
+      animation: rise .5s ease both;
+    }
+
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Back link ── */
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: .78rem;
+      font-family: 'DM Mono', monospace;
+      letter-spacing: .06em;
+      color: var(--ink-3);
+      text-decoration: none;
+      margin-bottom: 32px;
+      text-transform: uppercase;
+      transition: color .15s;
+    }
+    .back-link:hover { color: var(--accent); }
+    .back-link svg { transition: transform .15s; }
+    .back-link:hover svg { transform: translateX(-3px); }
+
+    /* ── Two-column layout ── */
+    .layout {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 0;
+      background: var(--paper);
+      border-top: 4px solid var(--accent);
+      box-shadow: 0 2px 4px rgba(0,0,0,.04), 0 12px 48px rgba(0,0,0,.08);
+    }
+
+    /* ── Left panel ── */
+    .left {
+      padding: 52px 44px;
+      border-right: 1px solid var(--rule);
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .left-header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2rem;
+      line-height: 1.1;
+      margin-bottom: 6px;
+    }
+
+    .left-header p {
+      font-size: .83rem;
+      color: var(--ink-3);
+      font-weight: 300;
+      line-height: 1.6;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .contact-icon {
+      width: 36px;
+      height: 36px;
+      background: var(--accent-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .contact-icon svg { color: var(--accent); }
+
+    .contact-detail {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .contact-detail span {
+      font-family: 'DM Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--ink-3);
+    }
+    .contact-detail a, .contact-detail p {
+      font-size: .87rem;
+      color: var(--ink);
+      text-decoration: none;
+      font-weight: 400;
+      transition: color .15s;
+      line-height: 1.4;
+    }
+    .contact-detail a:hover { color: var(--accent); }
+
+    .social-links {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .social-link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 12px;
+      background: var(--field-bg);
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--ink-2);
+      font-size: .83rem;
+      font-weight: 400;
+      transition: background .15s, color .15s;
+      border: 1px solid transparent;
+    }
+    .social-link:hover {
+      background: var(--accent-light);
+      color: var(--accent);
+      border-color: #f0c4bc;
+    }
+    .social-link .social-handle {
+      font-family: 'DM Mono', monospace;
+      font-size: .75rem;
+      color: var(--ink-3);
+      margin-left: auto;
+    }
+    .social-link:hover .social-handle { color: var(--accent); }
+
+    /* ── Right panel ── */
+    .right {
+      padding: 52px 48px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-label-row {
+      font-family: 'DM Mono', monospace;
+      font-size: .6rem;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .form-label-row::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--rule);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      flex: 1;
+    }
+
+    .field-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    label {
+      font-size: .72rem;
+      font-weight: 500;
+      letter-spacing: .04em;
+      color: var(--ink-3);
+      text-transform: uppercase;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+      width: 100%;
+      background: var(--field-bg);
+      border: 1px solid var(--field-border);
+      border-radius: 6px;
+      padding: 11px 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .87rem;
+      color: var(--ink);
+      outline: none;
+      transition: border-color .15s, background .15s;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input::placeholder, textarea::placeholder { color: #aaa9a3; }
+    input:focus, textarea:focus, select:focus {
+      border-color: var(--field-focus);
+      background: #fff;
+    }
+
+    select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b6a64' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      padding-right: 36px;
+      cursor: pointer;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.6;
+    }
+
+    .form-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 4px;
+    }
+
+    .form-note {
+      font-size: .75rem;
+      color: var(--ink-3);
+      font-weight: 300;
+    }
+
+    .btn-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 12px 24px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .87rem;
+      font-weight: 500;
+      cursor: pointer;
+      letter-spacing: .02em;
+      transition: background .15s, transform .1s;
+    }
+    .btn-submit:hover { background: var(--accent-hover); }
+    .btn-submit:active { transform: scale(.98); }
+
+    /* ── Success state ── */
+    .success-msg {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 14px;
+      flex: 1;
+      padding: 32px 0;
+    }
+    .success-icon {
+      width: 56px;
+      height: 56px;
+      background: var(--accent-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .success-msg h3 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+    }
+    .success-msg p {
+      font-size: .87rem;
+      color: var(--ink-3);
+      font-weight: 300;
+      max-width: 280px;
+      line-height: 1.6;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 680px) {
+      .layout { grid-template-columns: 1fr; }
+      .left { border-right: none; border-bottom: 1px solid var(--rule); padding: 36px 28px; }
+      .right { padding: 36px 28px; }
+      .field-group { grid-template-columns: 1fr; }
+    }
+
+    @media print {
+      body { background: none; padding: 0; }
+      .layout { box-shadow: none; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrapper">
+
+  <a href="Sarthak_Jain_Resume.html" class="back-link">
+    <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M19 12H5M12 5l-7 7 7 7"/></svg>
+    Back to resume
+  </a>
+
+  <div class="layout">
+
+    <!-- Left: contact details -->
+    <div class="left">
+      <div class="left-header">
+        <h1>Get in touch</h1>
+        <p>Open to internships, collaborations,<br>and interesting projects.</p>
+      </div>
+
+      <div class="contact-info">
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2A19.86 19.86 0 0 1 3.08 5.18 2 2 0 0 1 5.07 3h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11l-1.27 1.27a16 16 0 0 0 6.72 6.72l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          </div>
+          <div class="contact-detail">
+            <span>Phone</span>
+            <a href="tel:+919936465088">+91 99364 65088</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          </div>
+          <div class="contact-detail">
+            <span>Gmail</span>
+            <a href="mailto:jainn.sarthak777@gmail.com">jainn.sarthak777@gmail.com</a>
+          </div>
+        </div>
+
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 1 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div class="contact-detail">
+            <span>Location</span>
+            <p>Uttar Pradesh, India</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family:'DM Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);margin-bottom:12px;">Online</div>
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/sarthakjain077/" target="_blank" class="social-link">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+            LinkedIn
+            <span class="social-handle">sarthakjain077</span>
+          </a>
+          <a href="https://github.com/jainsarthak777" target="_blank" class="social-link">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            GitHub
+            <span class="social-handle">jainsarthak777</span>
+          </a>
+          <a href="https://www.instagram.com/sarthak_jain077?igsh=MW13Y3Bpcjh4MmVqaQ==" target="_blank" class="social-link">
+            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+            Instagram
+            <span class="social-handle">sarthak_jain077</span>
+          </a>
+          <a href="https://t.me/Sarthak_077" target="_blank" class="social-link">
+            <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M21.198 2.433a2.242 2.242 0 0 0-1.022.215l-16.5 6.498c-1.073.422-1.068 1.457-.186 1.732l4.29 1.338 1.665 5.138c.201.62.955.856 1.448.44l2.395-2.025 4.703 3.47c.869.634 2.115.195 2.376-.857l3.09-12.93c.32-1.337-.493-2.019-1.259-2.019zm-2.354 4.527-8.51 8.184-1.184-3.65 7.894-6.61c.34-.285.098-.44-.24-.245l-9.89 6.255-2.975-.926 14.34-5.65c.62-.245 1.151.133.565 2.642z"/></svg>
+            Telegram
+            <span class="social-handle">Sarthak_077</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right: contact form -->
+    <div class="right">
+      <div class="form-label-row">Send a message</div>
+
+      <form id="contactForm">
+        <div class="field-group">
+          <div class="field">
+            <label for="fname">First name</label>
+            <input type="text" id="fname" placeholder="Alex" autocomplete="given-name"/>
+          </div>
+          <div class="field">
+            <label for="lname">Last name</label>
+            <input type="text" id="lname" placeholder="Johnson" autocomplete="family-name"/>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="email">Email address</label>
+          <input type="email" id="email" placeholder="alex@company.com" autocomplete="email"/>
+        </div>
+
+        <div class="field">
+          <label for="subject">Subject</label>
+          <select id="subject">
+            <option value="" disabled selected>Select a topic…</option>
+            <option>Internship opportunity</option>
+            <option>Project collaboration</option>
+            <option>Freelance / contract work</option>
+            <option>General inquiry</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell me what you have in mind…"></textarea>
+        </div>
+
+        <div class="form-footer">
+          <span class="form-note">I usually reply within 24 hours.</span>
+          <button type="submit" class="btn-submit">
+            Send message
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 2 11 13M22 2 15 22l-4-9-9-4 20-7z"/></svg>
+          </button>
+        </div>
+      </form>
+
+      <div class="success-msg" id="successMsg">
+        <div class="success-icon">
+          <svg width="24" height="24" fill="none" stroke="#c0392b" stroke-width="2" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>
+        </div>
+        <h3>Message sent!</h3>
+        <p>Thanks for reaching out. I'll get back to you as soon as possible.</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
